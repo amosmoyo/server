@@ -1,0 +1,25 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "simple express server",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "mongoDb"
+  ],
+  "author": "amosmoyo",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.3"
+  }, 
+  "engines": {
+    "node": "14.15.4",
+    "npm":"6.14.10"
+  }
+}
