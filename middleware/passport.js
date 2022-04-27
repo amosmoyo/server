@@ -19,7 +19,8 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: process.env.client_url
+      callbackURL: process.env.client_url,
+      proxy: true
     },
     (accessToken, refreshToken, profile, cb) => {
       User.findOne({ googleId: profile.id })
