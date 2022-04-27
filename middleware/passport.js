@@ -24,7 +24,6 @@ passport.use(
     (accessToken, refreshToken, profile, cb) => {
       User.findOne({ googleId: profile.id })
         .then((existingUser) => {
-          console.log(existingUser);
           if (existingUser) {
             cb(null, existingUser);
           } else {

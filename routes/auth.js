@@ -11,7 +11,6 @@ router.route('/google').get( passport.authenticate('google', {
 router.route('/google/callback').get(passport.authenticate('google'))
 
 router.route('/profile').get((req, res) => {
-    console.log(req.session)
     res.json(req.user)
 })
 
