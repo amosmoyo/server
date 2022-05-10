@@ -3,6 +3,7 @@ dotenv.config();
 const colors = require('colors');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
+const cors = require('cors')
 
 const db = require('./configs/db')
 
@@ -13,6 +14,14 @@ const express = require('express');
 const auth_routes = require('./routes/auth');
 
 const app = express();
+
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
+
+app.use(cors({
+    origin: process.env.client_url,
+    credentials: true
+}))
 
 // database connection
 db();
