@@ -1,6 +1,8 @@
 const dotenv = require('dotenv');
 dotenv.config();
 
+const path = require('path');
+
 const colors = require('colors');
 
 const cookieSession = require('cookie-session');
@@ -8,8 +10,6 @@ const cookieSession = require('cookie-session');
 const passport = require('passport');
 
 const cors = require('cors');
-
-const path = require('path')
 
 // const path1 = require('./client')
 
