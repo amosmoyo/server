@@ -30,6 +30,25 @@ export const authReducers = (state = initialState, action) => {
         error: action.payload,
       };
 
+      case types.UPLOAD_AVATAR_REQUEST:
+        return {
+          ...state,
+          loading: false,
+        };
+      case types.UPLOAD_AVATAR_SUCCESS:
+        return {
+          ...state,
+          loading: false,
+          user: action.payload.user,
+          message: "",
+        };
+      case types.UPLOAD_AVATAR_FAIL:
+        return {
+          ...state,
+          loading: false,
+          error: action.payload,
+        };
+
     case types.REGISTER_PROFILE_REQUEST:
       return {
         ...state,
@@ -90,6 +109,67 @@ export const authReducers = (state = initialState, action) => {
         error: action.payload,
         message: "",
       };
+
+    case types.FORGET_PASSWORD_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case types.FORGET_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        message: action.payload.message,
+        isLogged: false,
+        error: "",
+      };
+    case types.FORGET_PASSWORD_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+        message: "",
+      };
+
+    case types.RESET_PASSWORD_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case types.RESET_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        message: action.payload.message,
+        isLogged: false,
+        error: "",
+      };
+    case types.RESET_PASSWORD_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+        message: "",
+      };
+    
+      case types.EDIT_USER_REQUEST:
+        return {
+          ...state,
+          loading: false,
+        };
+      case types.EDIT_USER_SUCCESS:
+        return {
+          ...state,
+          loading: false,
+          user: action.payload.user,
+          message: "",
+        };
+      case types.EDIT_USER_FAIL:
+        return {
+          ...state,
+          loading: false,
+          error: action.payload,
+        };
 
     case types.LOGOUT_PROFILE_REQUEST:
       return {

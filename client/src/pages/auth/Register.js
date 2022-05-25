@@ -24,6 +24,7 @@ const Register = () => {
     lastName: "",
     email: "",
     password: "",
+    passwordConfirmation: ""
   };
 
   const signUpSchema = Yup.object().shape({
@@ -33,6 +34,9 @@ const Register = () => {
     password: Yup.string()
       .required("Password is required")
       .min(6, "Password is too short - should be 4 chars minimum"),
+
+    passwordConfirmation: Yup.string()
+     .oneOf([Yup.ref('password'), null], 'Passwords must match')
   });
 
   const handleSubmitForm = (values, resetForm, error) => {
@@ -201,6 +205,36 @@ const Register = () => {
                         className="error"
                       />
                     </div>
+
+                    <div
+                      className={`form-row ${
+                        errors.passwordConfirmation && touched.passwordConfirmation
+                          ? "input-error"
+                          : null
+                      }`}
+                    >
+                      <label htmlFor="passwordConfirmation" className="form-label">
+                      Password Confirmation
+                      </label>
+                      <Field
+                        type="password"
+                        name="passwordConfirmation"
+                        id="passwordConfirmation"
+                        className={`${
+                          errors.passwordConfirmation && touched.passwordConfirmation
+                            ? "input-error"
+                            : null
+                        } form-control`}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                      />
+                      <ErrorMessage
+                        name="passwordConfirmation"
+                        component="span"
+                        className="error"
+                      />
+                    </div>
+
                     <div className="d-grid gap-2 col-6 mx-auto">
                       <button
                         type="submit"

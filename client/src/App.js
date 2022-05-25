@@ -10,6 +10,8 @@ import React, {useEffect} from "react";
 import {getProfile} from './redux/action/index';
 import DashBoard from './pages/account/DashBoard';
 import Activation from "./pages/auth/Activation";
+import  Forgetpass from './pages/auth/Forgetpass'
+import Resetpass from "./pages/auth/Resetpass";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +33,8 @@ function App() {
           <Route path="/register" element={<Register />}/>
           <Route path="/user/auth/activation/:activation_token" element={<Activation />} />
           <Route path="/account" element={<DashBoard />} />
+          <Route path="/forget_password" element={<Forgetpass />} />
+          <Route path="/user/reset/:token" element={<Resetpass />} />
         </Routes>
       </Container>
     </>

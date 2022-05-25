@@ -166,7 +166,7 @@ const Login = () => {
             </div>
 
             <div className="col-8">
-              <Link to={"/forgetpassword"} style={{color: "#fff"}}>Forgot your password?</Link>
+              <Link to={"/forget_password"} style={{color: "#fff"}}>Forgot your password?</Link>
             </div>
           </div>
         </div>

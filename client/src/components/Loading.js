@@ -6,7 +6,7 @@ const Loading = () => {
     <Row className="d-flex justify-content-center">
       <Col
         md={6}
-        style={{ fontSize: "3rem", height: "80vh" }}
+        style={{ fontSize: "3rem" }}
       >
         <Spinner
           animation="grow"
@@ -23,4 +23,7 @@ const Loading = () => {
   );
 };
 
+Loading.defaultProps = {
+
+}
 export default Loading;

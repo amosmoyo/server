@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Nav, NavDropdown, Navbar, Dropdown, Container } from "react-bootstrap";
+import {
+  Nav,
+  NavDropdown,
+  Navbar,
+  Dropdown,
+  Container,
+  Image,
+} from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/action/index";
@@ -10,9 +17,9 @@ const Header = () => {
   const navigate = useNavigate();
   // const [userLog, setUserLog] = useState(true);
 
-  const { isLogged } = useSelector((state) => state.authReducers);
+  const { isLogged, user } = useSelector((state) => state.authReducers);
 
-  useEffect(() => {}, [isLogged]);
+  useEffect(() => {}, [isLogged, user]);
 
   const handleLogout = async () => {
     dispatch(logout());
@@ -67,10 +74,10 @@ const Header = () => {
         </div>
       </nav> */}
 
-      <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
           <LinkContainer to="/">
-            <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+            <Navbar.Brand href="#home">Emaily</Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
@@ -79,32 +86,35 @@ const Header = () => {
                 <Nav.Link>Home</Nav.Link>
               </LinkContainer>
               <LinkContainer to="/about">
-                <Nav.Link>Pricing</Nav.Link>
+                <Nav.Link>About</Nav.Link>
               </LinkContainer>
-
-              <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
-                  Something
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">
-                  Separated link
-                </NavDropdown.Item>
-              </NavDropdown>
             </Nav>
             <Nav>
               {isLogged ? (
                 <>
-                  <LinkContainer to="/account">
+                  <NavDropdown
+                    // title={userData.userInfo.email.toLowerCase()}
+                    title={
+                      <Image
+                        src={user.avatar}
+                        alt="UserName profile image"
+                        roundedCircle
+                        style={{ width: "40px", height: "40px" }}
+                      />
+                    }
+                  >
+                    <LinkContainer to="/account">
+                      <Dropdown.Item>DashBoard</Dropdown.Item>
+                    </LinkContainer>
+                    <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
+                  </NavDropdown>
+
+                  {/* <LinkContainer to="/account">
                     <Nav.Link>Dashboard</Nav.Link>
                   </LinkContainer>
                   <Nav.Link eventKey={2} onClick={handleLogout}>
                     Logout
-                  </Nav.Link>
+                  </Nav.Link> */}
                 </>
               ) : (
                 <>

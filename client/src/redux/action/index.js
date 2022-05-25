@@ -118,6 +118,84 @@ export const activationEmail = (activation_token) => async(dispatch) => {
     }
 }
 
+export const forgetPassword = (userdata) => async(dispatch) => {
+    try {
+        dispatch({
+            type: types.FORGET_PASSWORD_REQUEST
+        })
+
+        const config = {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
+            crossdomain: true,
+        };
+
+        const res = await axios.post('/api/v1/auth/forgot_password', userdata, config);
+
+        let data;
+
+        if(res.status === 200 || res.status === 201) {
+            data  = res.data;
+    
+            dispatch({
+                type: types.FORGET_PASSWORD_SUCCESS,
+                payload: data
+            })
+
+            return data
+        }
+
+    } catch (error) {
+        const err =  error.response && error.response.data.message ? error.response.data.message : error.message;
+
+        dispatch({
+            type: types.FORGET_PASSWORD_FAIL,
+            payload: err
+        })
+    }
+}
+
+export const resetPassword = (userdata) => async(dispatch) => {
+    try {
+        dispatch({
+            type: types.RESET_PASSWORD_REQUEST
+        })
+
+        const config = {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
+            crossdomain: true,
+        };
+
+        const res = await axios.post('/api/v1/auth/resetpassword', userdata, config);
+
+        let data;
+
+        if(res.status === 200 || res.status === 201) {
+            data  = res.data;
+    
+            dispatch({
+                type: types.RESET_PASSWORD_SUCCESS,
+                payload: data
+            })
+
+            return data
+        }
+
+    } catch (error) {
+        const err =  error.response && error.response.data.message ? error.response.data.message : error.message;
+
+        dispatch({
+            type: types.RESET_PASSWORD_FAIL,
+            payload: err
+        })
+    }
+}
+
 export const getProfile = () => async(dispatch) => {
     try {
         dispatch({
@@ -148,6 +226,86 @@ export const getProfile = () => async(dispatch) => {
 
     }
 }
+
+export const uploadAvatar = (formData) => async(dispatch) => {
+    try {
+        dispatch({
+            type: types.UPLOAD_AVATAR_REQUEST
+        })
+
+        const config = {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+            withCredentials: true,
+            crossdomain: true,
+        };
+
+        const res = await axios.patch('/api/v1/auth/upload', formData, config);
+
+        let data;
+
+        if(res.status === 200 || res.status === 201) {
+            data  = res.data;
+            
+            dispatch({
+                type: types.UPLOAD_AVATAR_SUCCESS,
+                payload: data
+            })
+
+            return data.user;
+        }
+
+    } catch (error) {
+        const err =  error.response && error.response.data.message ? error.response.data.message : error.message;
+
+        dispatch({
+            type: types.UPLOAD_AVATAR_FAIL,
+            payload: err
+        })
+    }
+}
+
+export const updateUser = (editData) => async(dispatch) => {
+    try {
+        dispatch({
+            type: types.EDIT_USER_REQUEST
+        })
+
+        const config = {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
+            crossdomain: true,
+        };
+
+        const res = await axios.patch('/api/v1/auth/updateuser', editData, config);
+
+        let data;
+
+        if(res.status === 200 || res.status === 201) {
+            data  = res.data;
+            
+            dispatch({
+                type: types.EDIT_USER_SUCCESS,
+                payload: data
+            })
+
+            return data.user;
+        }
+
+    } catch (error) {
+        const err =  error.response && error.response.data.message ? error.response.data.message : error.message;
+
+        dispatch({
+            type: types.EDIT_USER_FAIL,
+            payload: err
+        })
+    }
+}
+
+
 
 export const logout = () => async(dispatch) => {
     try {
@@ -180,8 +338,4 @@ export const logout = () => async(dispatch) => {
         })
 
     }
-}
-
-export const redirect = () => async(dispatch) => {
-
 }
